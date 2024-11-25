@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useSearchTextStore } from "../../stores/useSearchTextStore";
 import Song from "../Song";
 import "./index.css";
 
@@ -23,7 +24,9 @@ const data = [
   },
 ];
 
-function SongList({ searchText }) {
+function SongList() {
+  const { searchText } = useSearchTextStore();
+
   const { data, isLoading } = useQuery({
     queryKey: ["getSong", searchText],
     queryFn: () => {
